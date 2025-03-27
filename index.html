@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            async function compileLuau() {
+              const code = document.getElementById('code').value;
+          
+              const response = await fetch('/.netlify/functions/compile', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: code }),
+              });
+          
+              const result = await response.json();
+              document.getElementById('output').textContent = result.compiledCode;
+            }
+          </script>
+    </head>
+    <body> 
+        <sometext>Call this page with a POST request with a luau bytecode input and see the output</sometext>
+    </body>
+</html>
